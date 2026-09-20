@@ -1,0 +1,19 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "strict": false,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "noEmit": true,
+    "incremental": false
+  },
+  "include": [
+    "src/nexus/**/*.ts",
+    "src/nexus/**/*.tsx",
+    "src/app/api/nexus/**/*.ts",
+    "src/app/(dashboard)/dashboard/nexus/**/*.tsx",
+    "src/lib/db/nexusWorkflows.ts",
+    "src/shared/components/NexusLogo.tsx"
+  ],
+  "exclude": ["node_modules", ".next", ".build", "app.__qa_backup", "vscode-extension"]
+}

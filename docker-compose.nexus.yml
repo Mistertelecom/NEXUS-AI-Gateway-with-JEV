@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+  nexus-gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile.nexus
+    container_name: nexus-gateway
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:20129:20129"
+    environment:
+      - NODE_ENV=production
+      - PORT=20129
+      - HOSTNAME=0.0.0.0
+      - HOST=0.0.0.0
+      - NEXUS_MASTER_KEY=${NEXUS_MASTER_KEY:-}
+      - DATA_DIR=/app/data
+      - NEXUS_WORKSPACE_ROOT=/app/workspace
+      - ANTIGRAVITY_CLI_PATH=${ANTIGRAVITY_CLI_PATH:-/app/bin/agy}
+      - CODEX_CLI_PATH=${CODEX_CLI_PATH:-/app/bin/codex}
+      - TYPESAFE_API_KEY=${TYPESAFE_API_KEY:-}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY:-}
+    volumes:
+      - nexus-data:/app/data
+      - nexus-vault:/app/.nexus
+      - ./workspace:/app/workspace:rw
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:20129/livez').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+
+volumes:
+  nexus-data:
+    driver: local
+  nexus-vault:
+    driver: local

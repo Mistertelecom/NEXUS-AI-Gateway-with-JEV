@@ -1,0 +1,16 @@
+{
+  "title": "Security",
+  "pages": [
+    "GUARDRAILS",
+    "ERROR_SANITIZATION",
+    "INFERENCE_AUTH_POSTURE",
+    "ROUTE_GUARD_TIERS",
+    "BAN_DETECTION",
+    "AGENTROUTER_WAF",
+    "CORS",
+    "EGRESS_POLICY",
+    "SUPPLY_CHAIN",
+    "COMPLIANCE",
+    "CLI_TOKEN"
+  ]
+}

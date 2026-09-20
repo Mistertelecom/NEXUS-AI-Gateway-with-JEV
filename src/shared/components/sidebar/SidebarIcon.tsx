@@ -1,0 +1,55 @@
+import {
+  Activity,
+  Blocks,
+  BookOpen,
+  Cable,
+  ChartNoAxesCombined,
+  Cpu,
+  FileText,
+  Gauge,
+  HardDrive,
+  KeyRound,
+  Layers3,
+  LayoutGrid,
+  Network,
+  Palette,
+  Settings2,
+  ShieldCheck,
+  Shrink,
+  SlidersHorizontal,
+  Terminal,
+  Waypoints,
+  type LucideIcon,
+} from "lucide-react";
+
+const ICONS: Readonly<Record<string, LucideIcon>> = {
+  account_tree: Waypoints,
+  memory: Cpu,
+  radar: ChartNoAxesCombined,
+  compress: Shrink,
+  shield: ShieldCheck,
+  terminal: Terminal,
+  cable: Cable,
+  tune: SlidersHorizontal,
+  settings: Settings2,
+  palette: Palette,
+  route: Network,
+  health_and_safety: Activity,
+  key: KeyRound,
+  vpn_key: KeyRound,
+  engineering: Settings2,
+  view_sidebar: LayoutGrid,
+  flag: Blocks,
+  auto_awesome: Waypoints,
+  image_search: Layers3,
+  dns: Network,
+  menu_book: BookOpen,
+  description: FileText,
+  bolt: Gauge,
+  storage: HardDrive,
+};
+
+export function SidebarIcon({ name }: { name: string }) {
+  const Icon = ICONS[name] ?? LayoutGrid;
+  return <Icon size={19} strokeWidth={1.7} aria-hidden="true" />;
+}
